@@ -41,20 +41,42 @@ This repo is intended to show the core engineering mechanics behind LLM observab
 
 ## Quick Start
 
+Clone the repository:
+
 ```bash
-# Install dependencies (FastAPI + uvicorn only)
-pip install fastapi uvicorn
-
-# Generate sample traces (no API key needed -- runs in mock mode)
-python demo.py
-
-# Start the UI
-uvicorn server:app --reload
-
-# Open http://localhost:8000
+git clone https://github.com/agentjakey/Trace-Forge.git
+cd Trace-Forge
 ```
-
-To use real Claude API calls, set `ANTHROPIC_API_KEY` before running `demo.py`.
+Create and activate a virtual environment:
+```bash
+python -m venv .venv
+```
+On macOS/Linux:
+```bash
+source .venv/bin/activate
+```
+On Windows PowerShell:
+```bash
+.venv\Scripts\Activate.ps1
+```
+Install dependencies:
+```bash
+pip install -r requirements.txt
+```
+Generate sample traces:
+```bash
+python demo.py
+```
+Start the dashboard:
+```bash
+uvicorn server:app --reload
+```
+OR if that gives you any error:
+```bash
+python -m uvicorn server:app --reload
+```
+Then open the link given in your terminal.
+The demo runs in mock mode by default, so no API key is required. To use real Claude API calls, set `ANTHROPIC_API_KEY` before running `demo.py`.
 
 ---
 
