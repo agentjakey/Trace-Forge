@@ -1,0 +1,6 @@
+fastapi>=0.111.0
+uvicorn[standard]>=0.29.0
+pydantic>=2.0.0
+
+# Optional: only needed for real Claude API calls in demo.py
+anthropic>=0.28.0
