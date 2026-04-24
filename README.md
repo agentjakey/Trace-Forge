@@ -345,3 +345,17 @@ The core tracing library (`traceforge/`) uses only the Python standard library.
 **Full-stack implementation:** REST API design, SQL schema design, data visualization (waterfall chart in ~50 lines of vanilla JS using CSS percentage widths derived from timestamps), and a clean Python library API -- all in one coherent codebase under 2000 lines.
 
 **Production habits:** Thread-safe SQLite connections via `threading.local`, proper error propagation (caught, recorded, re-raised - never swallowed), parameterized queries throughout, zero global mutable state outside the explicitly scoped thread-local.
+
+## Limitations
+
+TraceForge is a local-first prototype, not a production observability platform.
+
+Current limitations:
+
+- Traces are stored locally in SQLite, so this is best suited for local development, debugging, demos, and small experiments rather than high-volume production workloads.
+- The project does not currently include authentication, authorization, user management, or hosted deployment configuration.
+- The dashboard is intentionally lightweight and uses vanilla JavaScript rather than a production frontend framework.
+- Token counts and costs are user-provided or demo-generated; TraceForge does not automatically calculate usage from every LLM provider SDK.
+- OpenTelemetry export is formatted to resemble span-style JSONL output, but this project does not currently run a full OTel collector pipeline by default.
+- Replay reconstructs recorded step inputs, but deterministic replay still depends on the user-provided executor, model settings, API behavior, and external tool state.
+- The project currently focuses on observability mechanics rather than enterprise features such as persistence across teams, hosted dashboards, alerting, or distributed tracing across services.
