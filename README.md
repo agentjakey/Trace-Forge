@@ -1,13 +1,16 @@
 # TraceForge
 
-**Framework-agnostic observability for multi-step LLM pipelines.**  
-Captures, stores, and visualizes execution traces, latency, token usage, cost, errors, and step nesting, without requiring LangChain, LlamaIndex, or any agent framework.
+Framework-agnostic observability for multi-step LLM pipelines.
+
+TraceForge is a lightweight local prototype that instruments arbitrary Python functions, records nested execution traces, stores them in SQLite, and visualizes latency, token usage, cost, errors, and parent-child step relationships.
+
+It is not intended to replace production platforms like LangSmith or Langfuse. The goal is to expose and implement the core mechanics behind LLM observability from scratch.
 
 ---
 
 ## Why
 
-Tools like LangSmith and Langfuse are powerful, but they are black boxes that only work if you use their SDK or one of their supported frameworks. TraceForge is the opposite: **two lines of instrumentation wrap any Python function**, regardless of how it calls an LLM or what tools it uses. The tracing layer is just Python context managers and a SQLite database.
+Tools like LangSmith and Langfuse are powerful production platforms, but they can hide some of the lower-level mechanics of tracing. TraceForge was built from scratch to make those mechanics explicit. TraceForge: **two lines of instrumentation wrap any Python function**, regardless of how it calls an LLM or what tools it uses. The tracing layer is just Python context managers and a SQLite database.
 
 Building this from scratch was intentional. The interesting engineering is in the parts those tools hide: how do you track parent-child step relationships across arbitrary call stacks without asking the user to pass a context object everywhere? How do you design a schema that makes the five most common observability queries fast? What does a waterfall chart actually need from the data model to render correctly?
 
@@ -24,10 +27,16 @@ Building this from scratch was intentional. The interesting engineering is in th
 | **Token breakdown** | Per-step input/output bar chart with cost attribution |
 | **Run comparison** | Side-by-side diff of any two runs, latency and token deltas highlighted green/red |
 | **Replay** | Reconstruct exact inputs for any step and re-run in isolation for debugging |
-| **Export** | JSONL in OpenTelemetry span format, compatible with Jaeger, Grafana Tempo, and any OTel collector |
+| **Export** | Traces as OpenTelemetry-style JSONL spans that can be adapted for external tracing systems. |
 | **REST API** | FastAPI backend, fully documented at `/docs` |
 | **Zero framework deps** | No LangChain, LlamaIndex, OpenAI SDK, or agent framework required |
 
+---
+## Project Status
+
+TraceForge is functional as a local prototype. The demo script generates sample traces, and the tracing package demonstrates nested step tracking, SQLite persistence, replay inputs, and export utilities.
+
+This repo is intended to show the core engineering mechanics behind LLM observability systems, not to provide a hosted production monitoring service.
 ---
 
 ## Quick Start
@@ -345,6 +354,8 @@ The core tracing library (`traceforge/`) uses only the Python standard library.
 **Full-stack implementation:** REST API design, SQL schema design, data visualization (waterfall chart in ~50 lines of vanilla JS using CSS percentage widths derived from timestamps), and a clean Python library API -- all in one coherent codebase under 2000 lines.
 
 **Production habits:** Thread-safe SQLite connections via `threading.local`, proper error propagation (caught, recorded, re-raised - never swallowed), parameterized queries throughout, zero global mutable state outside the explicitly scoped thread-local.
+
+---
 
 ## Limitations
 
