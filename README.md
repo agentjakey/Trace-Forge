@@ -18,7 +18,7 @@ Building this from scratch was intentional. The interesting engineering is in th
 | Feature | Details |
 |---|---|
 | **Instrumentation** | `trace_run` context manager + `trace_step` context manager + `@trace_step_decorator` |
-| **Nesting** | Automatic parent step ID tracking via thread-local stack — no context passing required |
+| **Nesting** | Automatic parent step ID tracking via thread-local stack - no context passing required |
 | **Storage** | SQLite with 5 indexes, queryable by run ID, step name, time range, token count, error status |
 | **Waterfall UI** | Timeline view (browser DevTools Network-style), depth-indented nested steps, error highlighting |
 | **Token breakdown** | Per-step input/output bar chart with cost attribution |
