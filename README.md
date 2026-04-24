@@ -334,8 +334,7 @@ Each step is exported as one JSONL line in OTel span format:
 }
 ```
 
-Compatible with Jaeger, Grafana Tempo, and any collector that accepts OTel trace spans.
-
+The export uses an OpenTelemetry-style span representation that can be adapted for external tracing systems.
 ---
 
 ## Requirements
