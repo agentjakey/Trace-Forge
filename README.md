@@ -1,7 +1,7 @@
 # TraceForge
 
 **Framework-agnostic observability for multi-step LLM pipelines.**  
-Captures, stores, and visualizes execution traces — latency, token usage, cost, errors, and step nesting — without requiring LangChain, LlamaIndex, or any agent framework.
+Captures, stores, and visualizes execution traces, latency, token usage, cost, errors, and step nesting, without requiring LangChain, LlamaIndex, or any agent framework.
 
 ---
 
@@ -344,4 +344,4 @@ The core tracing library (`traceforge/`) uses only the Python standard library.
 
 **Full-stack implementation:** REST API design, SQL schema design, data visualization (waterfall chart in ~50 lines of vanilla JS using CSS percentage widths derived from timestamps), and a clean Python library API -- all in one coherent codebase under 2000 lines.
 
-**Production habits:** Thread-safe SQLite connections via `threading.local`, proper error propagation (caught, recorded, re-raised -- never swallowed), parameterized queries throughout, zero global mutable state outside the explicitly scoped thread-local.
+**Production habits:** Thread-safe SQLite connections via `threading.local`, proper error propagation (caught, recorded, re-raised - never swallowed), parameterized queries throughout, zero global mutable state outside the explicitly scoped thread-local.
