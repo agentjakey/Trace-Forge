@@ -15,6 +15,9 @@ Tools like LangSmith and Langfuse are powerful production platforms, but they ca
 Building this from scratch was intentional. The interesting engineering is in the parts those tools hide: how do you track parent-child step relationships across arbitrary call stacks without asking the user to pass a context object everywhere? How do you design a schema that makes the five most common observability queries fast? What does a waterfall chart actually need from the data model to render correctly?
 
 ---
+## Short Demo
+[![Check it out](https://img.youtube.com/vi/mth2aGWjgc0/hqdefault.jpg)](https://www.youtube.com/watch?v=mth2aGWjgc0)
+---
 
 ## Features
 
