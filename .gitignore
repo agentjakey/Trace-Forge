@@ -1,0 +1,31 @@
+# Generated database -- contains recorded trace data, recreate with: python demo.py
+*.db
+*.db-shm
+*.db-wal
+
+# Python bytecode
+__pycache__/
+*.pyc
+*.pyo
+*.pyd
+
+# Environment and secrets
+.env
+.env.local
+.env.*
+!.env.example
+
+# Temp server output from testing
+uvicorn_out.txt
+uvicorn_err.txt
+
+# OS / editor
+.DS_Store
+Thumbs.db
+.vscode/
+.idea/
+
+# Virtual envs
+venv/
+.venv/
+tfenv/
